@@ -1,0 +1,16 @@
+{
+  "name": "jayesh-portfolio-rag",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "ingest": "node server.mjs --ingest"
+  },
+  "dependencies": {
+    "cohere-ai": "^8.0.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jayesh Somwanshi | Java Developer</title>
+  <meta name="description" content="Portfolio of Jayesh Somwanshi, a Java developer focused on Spring Boot, microservices, APIs, and backend systems.">
+  <link rel="icon" type="image/svg+xml" sizes="any" href="/images/favicon.svg?v=2">
+  <link rel="shortcut icon" href="/images/favicon.svg?v=2">
+  <link rel="apple-touch-icon" href="/images/favicon.svg?v=2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f14;
+      --panel: rgba(16, 22, 30, 0.84);
+      --panel-strong: rgba(24, 32, 40, 0.95);
+      --panel-soft: #e7eef7;
+      --text: #f7fbff;
+      --muted: #9aa8b6;
+      --border: rgba(154, 168, 182, 0.18);
+      --accent: #2dd4bf;
+      --accent-strong: #14b8a6;
+      --accent-warm: #f59e0b;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.38);
+    }
+
+    body[data-theme="light"] {
+      color-scheme: light;
+      --bg: #f3f6f9;
+      --panel: rgba(255, 255, 255, 0.9);
+      --panel-strong: #ffffff;
+      --panel-soft: #0f172a;
+      --text: #0f172a;
+      --muted: #52606d;
+      --border: rgba(15, 23, 42, 0.1);
+      --accent: #0f766e;
+      --accent-strong: #115e59;
+      --accent-warm: #d97706;
+      --shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(45, 212, 191, 0.14), transparent 24%),
+        radial-gradient(circle at top right, rgba(245, 158, 11, 0.12), transparent 20%),
+        linear-gradient(180deg, #0a0d12 0%, #0b0f14 100%);
+      color: var(--text);
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    img { display: block; max-width: 100%; }
+    .page-shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    .topbar {
+      position: sticky; top: 16px; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      margin: 16px 0 32px; padding: 14px 18px;
+      background: var(--panel); backdrop-filter: blur(14px);
+      border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow);
+    }
+    .brand, .topbar-actions, .nav, .hero-actions, .hero-badges, .highlights, .status-row, .filter-row, .contact-links {
+      display: flex; align-items: center;
+    }
+    .brand { gap: 12px; }
+    .brand-mark {
+      display: grid; place-items: center; width: 44px; aspect-ratio: 1;
+      border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+      color: #081018; font-weight: 800;
+    }
+    .brand-copy { display: flex; flex-direction: column; gap: 2px; }
+    .brand-copy span, .nav a, .eyebrow, .hero-text, .summary-copy, .timeline-location, .project-card p,
+    .education-card span, .contact-copy p, .contact-links a, .metric-card span, .quick-card p,
+    .timeline-body p, .timeline-body li, .overview-card p, .skill-column, .skill-meter-header span {
+      color: var(--muted);
+    }
+    .brand-copy strong, .nav a:hover, .contact-links a:hover, .section-heading h2, .hero-copy h1, .timeline-body h3,
+    .project-card h3, .education-card h3, .skill-column h3, .skill-meter-header h3, .quick-card h2, .overview-card strong {
+      color: var(--text);
+    }
+    .nav { gap: 20px; }
+    .topbar-actions { gap: 12px; }
+    .icon-button, .button, .filter-button, .contact-form input, .contact-form textarea, .contact-action, .rag-chat-toggle,
+    .rag-chat-panel, .rag-chat-close, .rag-chat-form input {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: 180ms ease;
+    }
+    .icon-button {
+      width: 42px; aspect-ratio: 1; background: var(--panel-strong); color: var(--text); cursor: pointer; font-weight: 800;
+    }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px;
+      background: transparent; color: var(--text);
+    }
+    .button-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+      border-color: transparent; color: #081018; font-weight: 700;
+    }
+    .button-secondary, .filter-button, .contact-action, .rag-chat-close, .rag-chat-form input {
+      background: var(--panel-strong);
+      color: var(--text);
+    }
+    .button:hover, .icon-button:hover, .filter-button:hover, .contact-action:hover, .rag-chat-close:hover {
+      transform: translateY(-1px);
+    }
+    .section { padding: 44px 0; }
+    .hero { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 28px; min-height: calc(100vh - 120px); align-items: center; }
+    .hero-copy h1, .section-heading h2 { margin: 0; line-height: 1.05; }
+    .hero-copy h1 { max-width: 12ch; font-size: clamp(2.8rem, 6vw, 5.4rem); }
+    .section-heading h2 { font-size: clamp(1.8rem, 3.4vw, 3rem); }
+    .eyebrow { margin: 0 0 16px; text-transform: uppercase; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.08em; }
+    .hero-text, .summary-copy, .contact-copy p, .timeline-body p, .project-card p { line-height: 1.7; font-size: 1.02rem; }
+    .hero-actions { gap: 14px; margin: 28px 0 22px; flex-wrap: wrap; }
+    .hero-badges, .highlights { gap: 12px; flex-wrap: wrap; padding: 0; margin: 0; list-style: none; }
+    .hero-badges span, .highlights li, .chips span, .service-node {
+      padding: 10px 14px; border: 1px solid var(--border); border-radius: 999px; background: rgba(255,255,255,0.03);
+    }
+    .hero-panel, .overview-card, .timeline-body, .project-card, .education-card, .skill-column, .skill-meter-card, .contact-layout,
+    .summary-layout, .visual-showcase, .rag-chat-panel {
+      background: var(--panel); border: 1px solid var(--border); border-radius: 22px; box-shadow: var(--shadow);
+    }
+    .hero-panel { padding: 20px; display: grid; gap: 16px; align-self: stretch; }
+    .hero-photo-frame {
+      border-radius: 20px; overflow: hidden; background: linear-gradient(135deg, rgba(45,212,191,0.18), rgba(245,158,11,0.16));
+      min-height: 280px;
+    }
+    .hero-photo-frame picture, .hero-photo-frame img { width: 100%; height: 100%; display: block; }
+    .hero-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: saturate(1.03) contrast(1.02);
+    }
+    .status-row { gap: 10px; color: var(--muted); }
+    .status-dot { width: 10px; height: 10px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 0 6px rgba(45,212,191,0.16); }
+    .metric-grid, .skills-overview, .skill-meter-grid, .education-grid, .project-grid, .timeline, .contact-layout, .summary-layout, .skills-layout {
+      display: grid; gap: 16px;
+    }
+    .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .metric-card {
+      padding: 16px; border-radius: 18px; background: var(--panel-strong); border: 1px solid var(--border);
+      display: grid; gap: 6px; align-content: start;
+    }
+    .metric-card strong { font-size: 1.3rem; }
+    .metric-card-versions .metric-version-list { display: flex; gap: 8px; flex-wrap: wrap; }
+    .metric-version-list span { padding: 4px 8px; border-radius: 999px; background: rgba(45,212,191,0.12); color: var(--text); }
+    .quick-card { padding: 18px; border-radius: 18px; background: var(--panel-strong); border: 1px solid var(--border); }
+    .visuals-section { overflow: hidden; }
+    .visual-showcase { padding: 20px; position: relative; }
+    .visual-slide { display: none; gap: 18px; align-items: center; grid-template-columns: 1fr 1fr; }
+    .visual-slide.is-active { display: grid; }
+    .visual-art {
+      min-height: 280px; border-radius: 20px; border: 1px solid var(--border); position: relative; overflow: hidden;
+      background: radial-gradient(circle at top left, rgba(45,212,191,0.18), transparent 28%), var(--panel-strong);
+    }
+    .visual-art-api .visual-window { position: absolute; top: 18px; left: 18px; display: flex; gap: 8px; }
+    .visual-art-api .visual-window span { width: 10px; height: 10px; border-radius: 999px; background: var(--accent); opacity: 0.9; }
+    .code-lines { position: absolute; inset: 64px 20px 20px; display: grid; gap: 14px; }
+    .code-lines i { display: block; height: 12px; border-radius: 999px; background: linear-gradient(90deg, rgba(45,212,191,0.9), rgba(245,158,11,0.25), transparent); }
+    .visual-art-microservices .service-node { position: absolute; font-weight: 700; }
+    .visual-art-microservices .core { inset: 50% auto auto 50%; transform: translate(-50%, -50%); }
+    .visual-art-microservices .left { inset: 34% auto auto 12%; }
+    .visual-art-microservices .right { inset: 34% 12% auto auto; }
+    .visual-art-microservices .bottom { inset: auto auto 12% 50%; transform: translateX(-50%); }
+    .visual-art-data .data-bars { position: absolute; inset: 20px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-items: end; }
+    .visual-art-data .data-bars span { border-radius: 12px 12px 0 0; background: linear-gradient(180deg, var(--accent), transparent); min-height: 40%; }
+    .visual-art-data .data-bars span:nth-child(2) { min-height: 60%; }
+    .visual-art-data .data-bars span:nth-child(3) { min-height: 45%; }
+    .visual-art-data .data-bars span:nth-child(4) { min-height: 72%; }
+    .visual-art-data .data-bars span:nth-child(5) { min-height: 52%; }
+    .visual-dots { display: flex; justify-content: center; gap: 10px; padding-top: 16px; }
+    .visual-dot { width: 12px; height: 12px; border-radius: 999px; border: none; background: rgba(154,168,182,0.35); cursor: pointer; }
+    .visual-dot.is-active { background: var(--accent); }
+    .summary-layout { grid-template-columns: 1.3fr 0.7fr; padding: 24px; align-items: center; }
+    .contact-panel, .contact-layout { gap: 12px; }
+    .contact-panel { display: flex; flex-wrap: wrap; }
+    .skills-overview { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .overview-card, .skill-meter-card, .project-card, .education-card {
+      padding: 18px;
+    }
+    .skill-meter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .skill-meter-header { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+    .skill-meter { height: 10px; border-radius: 999px; background: rgba(154,168,182,0.15); overflow: hidden; }
+    .skill-meter span { display: block; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--accent), var(--accent-warm)); }
+    .skills-layout { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chips span { color: var(--text); }
+    .timeline { gap: 18px; }
+    .timeline-item { position: relative; padding-left: 18px; }
+    .timeline-item::before {
+      content: ""; position: absolute; left: 2px; top: 10px; bottom: 0; width: 2px;
+      background: linear-gradient(180deg, var(--accent), transparent);
+    }
+    .timeline-date { color: var(--accent); font-weight: 700; margin-bottom: 10px; }
+    .timeline-body ul { margin: 12px 0 0; padding-left: 18px; display: grid; gap: 8px; }
+    .experience-subsection { margin-top: 14px; }
+    .experience-subtitle { margin: 0 0 10px; }
+    .project-grid, .education-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .education-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .project-tag { display: inline-flex; margin-bottom: 12px; padding: 6px 10px; border-radius: 999px; background: rgba(45,212,191,0.12); color: var(--accent); font-size: 0.82rem; font-weight: 700; }
+    .contact-layout { grid-template-columns: 1fr 0.9fr; align-items: start; }
+    .contact-form { display: grid; gap: 14px; }
+    .contact-form label { display: grid; gap: 8px; }
+    .contact-form input, .contact-form textarea, .rag-chat-form input {
+      width: 100%; background: rgba(255,255,255,0.03); color: var(--text); padding: 14px 16px; outline: none;
+    }
+    .contact-form input:focus, .contact-form textarea:focus, .rag-chat-form input:focus { border-color: rgba(45,212,191,0.6); box-shadow: 0 0 0 3px rgba(45,212,191,0.12); }
+    .toast {
+      position: fixed; right: 20px; bottom: 20px; z-index: 30;
+      padding: 12px 16px; border-radius: 12px; background: var(--panel-strong); border: 1px solid var(--border);
+      box-shadow: var(--shadow); opacity: 0; transform: translateY(10px); pointer-events: none; transition: 180ms ease;
+    }
+    .toast.is-visible { opacity: 1; transform: translateY(0); }
+    .rag-chat {
+      position: fixed; right: 20px; bottom: 20px; z-index: 25; display: grid; gap: 12px;
+    }
+    .rag-chat-toggle { justify-self: end; padding: 12px 16px; background: linear-gradient(135deg, var(--accent), var(--accent-warm)); color: #081018; font-weight: 800; }
+    .rag-chat-toggle.is-hidden { display: none; }
+    .rag-chat-panel { width: min(380px, calc(100vw - 32px)); padding: 16px; background: rgba(13, 18, 24, 0.96); }
+    .rag-chat-panel {
+      backdrop-filter: blur(18px);
+      border-color: rgba(154, 168, 182, 0.22);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+    }
+    .rag-chat-header { display: flex; justify-content: space-between; gap: 12px; align-items: start; margin-bottom: 12px; }
+    .rag-chat-header span { display: block; color: var(--muted); margin-top: 4px; }
+    .rag-chat-close { width: 36px; height: 36px; cursor: pointer; }
+    .rag-chat-messages {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+      border-radius: 16px;
+    }
+    .rag-chat-messages { display: grid; gap: 10px; max-height: 320px; overflow: auto; padding-right: 6px; }
+    .rag-message {
+      padding: 12px 14px; border-radius: 14px; line-height: 1.55; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+    .rag-message-user { background: rgba(45,212,191,0.1); }
+    .rag-message-bot { background: rgba(255,255,255,0.03); }
+    .rag-message-thinking::after { content: "..."; animation: pulse 1.2s infinite; }
+    .rag-chat-form { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-top: 12px; }
+    .rag-chat-form input { min-height: 44px; }
+    @keyframes pulse { 50% { opacity: 0.4; } }
+    @media (max-width: 980px) {
+      .hero, .summary-layout, .skills-overview, .skill-meter-grid, .skills-layout, .project-grid, .education-grid, .contact-layout, .visual-slide {
+        grid-template-columns: 1fr;
+      }
+      .topbar { flex-wrap: wrap; }
+      .nav { flex-wrap: wrap; }
+      .hero-copy h1 { max-width: 100%; }
+    }
+    @media (max-width: 640px) {
+      .page-shell { width: min(100% - 20px, 1180px); }
+      .hero { min-height: auto; }
+      .topbar { padding: 12px; }
+      .nav { gap: 12px; }
+      .topbar-actions { width: 100%; justify-content: space-between; }
+      .hero-copy h1 { font-size: clamp(2.2rem, 12vw, 3.4rem); }
+      .rag-chat { right: 10px; bottom: 10px; }
+      .rag-chat-panel { width: calc(100vw - 20px); }
+    }
+  </style>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#home">
+        <span class="brand-mark">JS</span>
+        <span class="brand-copy">
+          <strong>Jayesh Somwanshi</strong>
+          <span>Java Developer</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="topbar-actions">
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Toggle theme">D</button>
+        <a class="button button-primary" href="#contact">Hire Me</a>
+      </div>
+    </header>
+
+    <main id="home">
+      <section class="hero section">
+        <div class="hero-copy">
+          <p class="eyebrow">Backend Engineering / Java / Spring Boot / Microservices</p>
+          <h1>Building reliable backend systems with clean APIs and production-focused thinking.</h1>
+          <p class="hero-text">
+            BSc in Information Technology graduate with 2.8 years of hands-on development experience across banking,
+            AI-assisted ad platforms, and microservice-based learning systems.
+          </p>
+          <div class="hero-badges">
+            <span>Pune / Ahmedabad Work Experience</span>
+            <span>Open to Java Backend Roles</span>
+            <span>M.Sc. Computer Ongoing</span>
+          </div>
+          <div class="hero-actions">
+            <a class="button button-primary" href="mailto:jayeshsomwanshi29@gmail.com">Email Me</a>
+            <a class="button button-secondary" href="tel:+917387533172">Call</a>
+          </div>
+          <ul class="highlights">
+            <li>Spring Boot APIs and service design</li>
+            <li>Microservices, API Gateway, RBAC</li>
+            <li>MySQL, PostgreSQL, Elastic Search</li>
+          </ul>
+        </div>
+        <aside class="hero-panel">
+          <div class="hero-photo-frame">
+            <picture>
+              <source srcset="/images/jayesh-profile-small.webp" type="image/webp">
+              <img
+                class="hero-photo"
+                src="/images/jayesh-profile.png"
+                alt="Portrait of Jayesh Somwanshi"
+                loading="eager"
+                decoding="async"
+              >
+            </picture>
+            <div class="hero-avatar-label">Jayesh Somwanshi</div>
+          </div>
+          <div class="status-row">
+            <span class="status-dot"></span>
+            <span>Open to backend and Java developer opportunities</span>
+          </div>
+          <div class="metric-grid">
+            <article class="metric-card">
+              <strong>2.9+</strong>
+              <span>Years of experience</span>
+            </article>
+            <article class="metric-card">
+              <strong>3</strong>
+              <span>Core domains delivered</span>
+            </article>
+            <article class="metric-card metric-card-versions">
+              <strong>Java</strong>
+              <div class="metric-version-list" aria-label="Java versions">
+                <span>8</span>
+                <span>11</span>
+                <span>17</span>
+              </div>
+              <span>Versions used across backend projects</span>
+            </article>
+            <article class="metric-card">
+              <strong>M.Sc.</strong>
+              <span>Currently pursuing</span>
+            </article>
+          </div>
+          <div class="quick-card">
+            <h2>Current Focus</h2>
+            <p>Secure microservices, API integration, and platform workflows for learning and AI-enabled products.</p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section visuals-section">
+        <div class="section-heading">
+          <p class="eyebrow">Development Visuals</p>
+          <h2>Live rotating view of my development focus</h2>
+        </div>
+        <div class="visual-showcase" id="visualShowcase">
+          <article class="visual-slide is-active" data-visual-slide>
+            <div class="visual-art visual-art-api">
+              <div class="visual-window">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="code-lines">
+                <i></i><i></i><i></i><i></i>
+              </div>
+            </div>
+            <div class="visual-copy">
+              <span class="visual-label">API Development</span>
+              <h3>REST services designed for clean backend workflows</h3>
+              <p>Focused on controller design, service separation, validation, exception handling, and stable response flows.</p>
+            </div>
+          </article>
+          <article class="visual-slide" data-visual-slide>
+            <div class="visual-art visual-art-microservices">
+              <div class="service-node core">Gateway</div>
+              <div class="service-node left">Auth</div>
+              <div class="service-node right">Users</div>
+              <div class="service-node bottom">Courses</div>
+            </div>
+            <div class="visual-copy">
+              <span class="visual-label">Microservices</span>
+              <h3>Service communication and secure platform architecture</h3>
+              <p>Built around API Gateway, role-based access, isolated services, and maintainable backend boundaries.</p>
+            </div>
+          </article>
+          <article class="visual-slide" data-visual-slide>
+            <div class="visual-art visual-art-data">
+              <div class="data-bars">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+              <div class="data-grid"></div>
+            </div>
+            <div class="visual-copy">
+              <span class="visual-label">Data and Persistence</span>
+              <h3>Database-backed systems with practical persistence design</h3>
+              <p>Working across MySQL, PostgreSQL, JDBC, and JPA for systems that need consistent data flow and traceability.</p>
+            </div>
+          </article>
+          <div class="visual-dots">
+            <button class="visual-dot is-active" type="button" data-visual-dot="0" aria-label="Show API development visual"></button>
+            <button class="visual-dot" type="button" data-visual-dot="1" aria-label="Show microservices visual"></button>
+            <button class="visual-dot" type="button" data-visual-dot="2" aria-label="Show data visual"></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section info-strip" id="about">
+        <div class="section-heading">
+          <p class="eyebrow">Profile</p>
+          <h2>Professional Summary</h2>
+        </div>
+        <div class="summary-layout">
+          <p class="summary-copy">
+            Dynamic software developer with practical experience in Java, Spring Boot, REST APIs, and database-backed
+            systems. Comfortable working in agile teams, translating business requirements into backend services, and
+            shipping features that need reliability, traceability, and maintainable code.
+          </p>
+          <div class="contact-panel">
+            <button class="button button-secondary contact-action" type="button" data-copy="jayeshsomwanshi29@gmail.com">Copy Email</button>
+            <button class="button button-secondary contact-action" type="button" data-copy="+91 7387533172">Copy Phone</button>
+            <a class="button button-secondary" href="https://www.linkedin.com/in/jayesh-somwanshi-b1515a2b2/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section skills-section">
+        <div class="section-heading">
+          <p class="eyebrow">Technical Stack</p>
+          <h2>Skills that support delivery</h2>
+        </div>
+        <div class="skills-overview">
+          <article class="overview-card">
+            <strong>Backend Development</strong>
+            <p>Java-first service development with Spring Boot, REST APIs, persistence, and maintainable business logic.</p>
+          </article>
+          <article class="overview-card">
+            <strong>Platform Integration</strong>
+            <p>Experience integrating third-party APIs, AI services, and internal platform workflows across multiple domains.</p>
+          </article>
+          <article class="overview-card">
+            <strong>System Design Focus</strong>
+            <p>Prefer clear service boundaries, secure access control, and database-backed applications that scale cleanly.</p>
+          </article>
+        </div>
+        <div class="skill-meter-grid">
+          <article class="skill-meter-card">
+            <div class="skill-meter-header">
+              <h3>Java and Spring Boot</h3>
+              <span>Advanced</span>
+            </div>
+            <div class="skill-meter"><span style="width: 90%"></span></div>
+          </article>
+          <article class="skill-meter-card">
+            <div class="skill-meter-header">
+              <h3>REST APIs and Integrations</h3>
+              <span>Advanced</span>
+            </div>
+            <div class="skill-meter"><span style="width: 88%"></span></div>
+          </article>
+          <article class="skill-meter-card">
+            <div class="skill-meter-header">
+              <h3>Databases and Persistence</h3>
+              <span>Strong</span>
+            </div>
+            <div class="skill-meter"><span style="width: 82%"></span></div>
+          </article>
+          <article class="skill-meter-card">
+            <div class="skill-meter-header">
+              <h3>Microservices and Security</h3>
+              <span>Strong</span>
+            </div>
+            <div class="skill-meter"><span style="width: 80%"></span></div>
+          </article>
+        </div>
+        <div class="skills-layout">
+          <article class="skill-column">
+            <h3>Backend</h3>
+            <div class="chips">
+              <span>Core Java</span>
+              <span>Spring</span>
+              <span>Spring Boot</span>
+              <span>Microservices</span>
+              <span>J2EE</span>
+              <span>REST API</span>
+              <span>JDBC</span>
+              <span>Hibernate / JPA</span>
+              <span>Multithreading</span>
+            </div>
+          </article>
+          <article class="skill-column">
+            <h3>Data and Infra</h3>
+            <div class="chips">
+              <span>MySQL</span>
+              <span>PostgreSQL</span>
+              <span>Elastic Search</span>
+              <span>AWS</span>
+              <span>Database Design</span>
+              <span>Exception Handling</span>
+              <span>OOP</span>
+              <span>Collections</span>
+            </div>
+          </article>
+          <article class="skill-column">
+            <h3>Tools and Workflow</h3>
+            <div class="chips">
+              <span>Postman</span>
+              <span>Maven</span>
+              <span>Tomcat</span>
+              <span>Workbench</span>
+              <span>STS</span>
+              <span>Eclipse</span>
+              <span>Visual Studio</span>
+              <span>Kibana</span>
+              <span>Agile Workflow</span>
+              <span>HTML5</span>
+              <span>CSS3</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section experience-section" id="experience">
+        <div class="section-heading">
+          <p class="eyebrow">Career Path</p>
+          <h2>Experience Timeline</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-date">Aug 2023 - Dec 2024</div>
+            <div class="timeline-body">
+              <h3>Jr. Java Developer - SoftwareScope Technologies</h3>
+              <p class="timeline-location">Pune, Maharashtra</p>
+              <p>Worked on a banking-focused management system with account creation, deposits, withdrawals, and Spring Boot backend services.</p>
+              <div class="experience-subsection">
+                <h4 class="experience-subtitle">Project: Bank Management System</h4>
+                <ul>
+                  <li>Developed a comprehensive Bank Management System incorporating features such as account creation,
+                    withdrawals, and deposits using Spring Boot.</li>
+                  <li>Implemented REST APIs for banking operations and business workflows.</li>
+                  <li>Supported data-driven operations with maintainable backend logic.</li>
+                  <li>API Implementation: Implemented RESTful APIs to support various banking operations.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-date">Jan 2025 - Present</div>
+            <div class="timeline-body">
+              <h3>Jr. Java Developer - Infusion Analysts</h3>
+              <p class="timeline-location">Ahmedabad, Gujarat</p>
+              <p>Contributing to AI-assisted advertising workflows and client-facing microservice-based platform development.</p>
+              <div class="experience-subsection">
+                <h4 class="experience-subtitle">Project: AI-Based Ad Generator</h4>
+                <ul>
+                  <li>Drafted software requirements for an AI-based ad generator.</li>
+                  <li>Integrated Facebook, Instagram, YouTube, and Snapchat APIs for campaign automation.</li>
+                  <li>Connected Google AI Studio for text and image generation workflows.</li>
+                  <li>Implemented AI-driven ad creative workflows using text-to-image generation.</li>
+                </ul>
+              </div>
+              <div class="experience-subsection">
+                <h4 class="experience-subtitle">Client: Edtech - Microservice-Based Learning Platform</h4>
+                <p class="experience-subdate">28 May 2025 - Present</p>
+                <ul>
+                  <li>Developed a microservices-based Learning Management System using Spring Boot and PostgreSQL.</li>
+                  <li>Implemented an API Gateway for centralized routing, authentication, and communication between microservices.</li>
+                  <li>Developed a secure authentication and authorization service with role-based access control (RBAC).</li>
+                  <li>Developed admin (Console), institute (Launchpad), and student-facing services for platform operations and user workflows.</li>
+                  <li>Built RAGAssist, an AI-powered RAG microservice that enables context-aware Q&amp;A from uploaded academic PDFs and images.</li>
+                  <li>Implemented OCR, text chunking, vector embeddings, and multi-tenant semantic retrieval to deliver class-specific AI responses with streaming support.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section projects-section" id="projects">
+        <div class="section-heading">
+          <p class="eyebrow">Selected Work</p>
+          <h2>Projects aligned to backend ownership</h2>
+        </div>
+        <div class="filter-row">
+          <button class="filter-button is-active" type="button" data-filter="all">All</button>
+          <button class="filter-button" type="button" data-filter="banking">Banking</button>
+          <button class="filter-button" type="button" data-filter="ai">AI Integrations</button>
+          <button class="filter-button" type="button" data-filter="microservices">Microservices</button>
+        </div>
+        <div class="project-grid">
+          <article class="project-card" data-category="banking">
+            <div class="project-tag">Banking</div>
+            <h3>Bank Management System</h3>
+            <p>Spring Boot based backend supporting account creation, deposits, withdrawals, and transactional flows.</p>
+            <ul>
+              <li>RESTful service endpoints</li>
+              <li>Backend business logic ownership</li>
+              <li>Reliable account operations</li>
+            </ul>
+          </article>
+          <article class="project-card" data-category="ai">
+            <div class="project-tag">AI Integrations</div>
+            <h3>AI-Based Ad Generator</h3>
+            <p>Integrated ad-platform APIs and AI generation services to support automated campaign creative workflows.</p>
+            <ul>
+              <li>Social media publishing integrations</li>
+              <li>AI text and image generation enablement</li>
+              <li>SRS and workflow definition</li>
+            </ul>
+          </article>
+          <article class="project-card" data-category="microservices">
+            <div class="project-tag">Microservices</div>
+            <h3>Learning Management Platform</h3>
+            <p>Built services for admin, institutes, and students with centralized routing, auth, and role control.</p>
+            <ul>
+              <li>API Gateway setup</li>
+              <li>RBAC authentication and authorization</li>
+              <li>PostgreSQL-backed service design</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section education-section">
+        <div class="section-heading">
+          <p class="eyebrow">Education</p>
+          <h2>Academic Background</h2>
+        </div>
+        <div class="education-grid">
+          <article class="education-card">
+            <h3>M.Sc. Computer</h3>
+            <p>Dr. Babasaheb Ambedkar Open University</p>
+            <span>Pursuing - Final Year</span>
+          </article>
+          <article class="education-card">
+            <h3>B.Sc. Information Technology</h3>
+            <p>North Maharashtra University</p>
+            <span>7.92 CGPA - June 2024</span>
+          </article>
+          <article class="education-card">
+            <h3>HSC</h3>
+            <p>Nashik Divisional Board</p>
+            <span>61.69% - 2020</span>
+          </article>
+          <article class="education-card">
+            <h3>SSC</h3>
+            <p>Nashik Divisional Board</p>
+            <span>74.40% - 2018</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="section-heading">
+          <p class="eyebrow">Contact</p>
+          <h2>Let's discuss backend roles and project work</h2>
+        </div>
+        <div class="contact-layout">
+          <div class="contact-copy">
+            <p>
+              I'm interested in Java backend roles where clean service boundaries, API quality, database design, and
+              practical engineering ownership matter.
+            </p>
+            <div class="contact-links">
+              <a href="mailto:jayeshsomwanshi29@gmail.com">jayeshsomwanshi29@gmail.com</a>
+              <a href="tel:+917387533172">+91 73875 33172</a>
+              <a href="https://www.linkedin.com/in/jayesh-somwanshi-b1515a2b2/" target="_blank" rel="noreferrer">linkedin.com/in/jayesh-somwanshi-b1515a2b2</a>
+            </div>
+          </div>
+          <form class="contact-form" id="contactForm">
+            <label>
+              <span>Name</span>
+              <input id="contactName" name="name" type="text" placeholder="Your name">
+            </label>
+            <label>
+              <span>Email</span>
+              <input id="contactEmail" name="email" type="email" placeholder="your@email.com">
+            </label>
+            <label>
+              <span>Message</span>
+              <textarea id="contactMessage" name="message" rows="5" placeholder="Write a short message"></textarea>
+            </label>
+            <button class="button button-primary" type="submit">Create Email Draft</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <aside class="rag-chat" aria-label="Portfolio AI assistant">
+    <button class="rag-chat-toggle" id="ragChatToggle" type="button" aria-expanded="false" aria-controls="ragChatPanel">
+      Ask AI
+    </button>
+    <section class="rag-chat-panel" id="ragChatPanel" aria-hidden="true">
+      <div class="rag-chat-header">
+        <div>
+          <strong>Portfolio AI</strong>
+          <span>Ask about Jayesh's skills, projects, or experience</span>
+        </div>
+        <button class="rag-chat-close" id="ragChatClose" type="button" aria-label="Close portfolio assistant">x</button>
+      </div>
+      <div class="rag-chat-messages" id="ragChatMessages" aria-live="polite">
+        <article class="rag-message rag-message-bot">
+          Hi, I can answer from Jayesh's portfolio knowledge base.
+        </article>
+      </div>
+      <form class="rag-chat-form" id="ragChatForm">
+        <input id="ragChatInput" name="message" type="text" placeholder="Ask about projects or skills" autocomplete="off">
+        <button class="button button-primary" type="submit">Send</button>
+      </form>
+    </section>
+  </aside>
+
+  <div class="toast" id="toast" aria-live="polite"></div>
+  <script src="/script.js"></script>
+</body>
+</html>
